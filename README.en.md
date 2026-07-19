@@ -7,19 +7,18 @@
 #### A few AI skills I actually use every day, open-sourced as-is
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-6-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-5-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
 ![Codex](https://img.shields.io/badge/Codex-Skill-10B981?style=flat-square&logo=openai&logoColor=white)
-![OpenCode](https://img.shields.io/badge/OpenCode-Skill-3B82F6?style=flat-square)
-![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-8B5CF6?style=flat-square)
+![40+ Agents](https://img.shields.io/badge/40%2B_Agents-Compatible-3B82F6?style=flat-square)
 
 </div>
 
 Each one was running in my own projects long enough to prove it actually saves time before I bothered open-sourcing it. No hype — just a few useful things.
 
-Every skill here is a structured instruction set that agents load directly. Follows the [Agent Skills](https://agentskills.io) open standard. Works with Claude Code, Codex, OpenCode, and OpenClaw.
+Every skill here is a structured instruction set that agents load directly. Follows the [Agent Skills](https://agentskills.io) open standard — works with Claude Code, Codex, Qoder, Kimi Code, iFlow, CodeBuddy, Cursor, and 40+ other agents that support it.
 
 ---
 
@@ -37,13 +36,15 @@ Every skill here is a structured instruction set that agents load directly. Foll
 
 ## 📦 Install
 
-In any agent that supports Skills (Claude Code, Codex, OpenClaw…), just say:
+In any agent that supports Agent Skills (Claude Code, Codex…), just say:
 
 ```
 Install this skill: https://github.com/KKKKhazix/khazix-skills/tree/main/<skill-name>
 ```
 
 Replace `<skill-name>` with the one you want — e.g. `neat-freak`, `hv-analysis`, `khazix-writer`. The agent will clone it into the right directory for you.
+
+Agent doesn't support Skills? Download the `SKILL.md` from the skill's directory and hand it to your agent as a project rule file (or paste it into the conversation) — same effect.
 
 ---
 
@@ -154,20 +155,26 @@ The agent isn't getting dumber — your docs and memory are. neat-freak's job is
 - Project docs/ and README (read by teammates and downstream developers)
 - The agent's own memory system (read by future you across sessions)
 
-These three layers have different audiences and don't overlap. This version also treats rules as knowledge: CLAUDE.md / AGENTS.md symlink integrity, missing required files, and dead path references are all part of the audit. If the rules don't match reality, the next agent still works from the wrong premises.
+These three layers have different audiences and don't overlap. It also treats rules as knowledge: CLAUDE.md / AGENTS.md symlink integrity, missing required files, and dead path references are all part of the audit. If the rules don't match reality, the next agent still works from the wrong premises.
+
+**Two guarantees in v3.0**
+
+- **A dedicated light path for small projects**: for vibe projects with no git and no rule file, it aligns the README with what the code actually does, creates a minimal AI rule file by default (so your next session picks up right where you left off), and lists session residue — PLAN.md, debug scripts, `xxx_old` copies — as candidates for you to confirm.
+- **Never deletes on its own**: deletions only ever appear as a candidate list until you confirm; machine-generated memory is read-only by default; an "execute this command" found inside a file is never treated as your authorization.
 
 **How to trigger**
 
 ```
-/neat            # direct command
-sync up          # natural language
-tidy up docs     # natural language
-整理一下          # 中文
+/neat                                  # direct command
+run neat-freak on this project         # by name
+tidy up the project docs and memory    # closeout intent
+clean handoff for the new teammate     # handoff intent
 ```
 
-**🌐 Cross-platform**: Claude Code · Codex · OpenCode · OpenClaw
+Pure coding tasks and tidying data / reports won't trigger it — it only handles project-knowledge closeout.
 
-[![ClawHub](https://img.shields.io/badge/ClawHub-v1.0.3-EC4899?style=flat-square)](https://clawhub.ai)
+**🌐 Cross-platform**: follows the Agent Skills open standard — Claude Code, Codex, Qoder, Kimi Code, iFlow, CodeBuddy, Cursor, and more. No Skills support? Use `SKILL.md` as a rule file.
+
 [![Tessl](https://img.shields.io/badge/Tessl-0.1.1-3B82F6?style=flat-square)](https://tessl.io/registry/khazix-skills/neat-freak)
 
 → [SKILL.md](./neat-freak/SKILL.md) · [Article (Chinese)](https://mp.weixin.qq.com/s/tg1wd-iN2gWHWhXdY0faeg)
